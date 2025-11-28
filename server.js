@@ -14,6 +14,7 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI)
     .then(() => {
         console.log('[DB] Conexión a la base de datos establecida');
+        console.log(`[DB] MONGO_URI: ${MONGO_URI}`)
     }).catch(err => {
         console.error('[DB] Error de conexión a la base de datos:', err);
 })

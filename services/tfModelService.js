@@ -16,7 +16,7 @@ let inputDim = null;
 function getModelInfo() {
   return {
     ready,
-    modelVersion: MODEL_VERSION,
+    MODEL_VERSION,
     inputName,
     outputName,
     inputDim

@@ -87,8 +87,50 @@ async function doPredict(req, res) {
   }
 }
 
+async function obtenerPrediccionPorId (req, res) {
+    let prediccionId = req.params.id;
+    try {
+        const prediction = await predictService.obtenerPrediccionPorId(prediccionId);
+        if (!prediction) {
+            return res.status(404).send({ mensaje: 'La predicción no existe' });
+        }
+        res.status(200).send({ prediction });
+    } catch (err) {
+        res.status(500).send({ mensaje: `Error al realizar la petición: ${err.message}`});
+    }
+}
+
+async function obtenerTodasPredicciones(req, res) {
+    try {
+        const predictions = await predictService.obtenerTodasPredicciones();
+        if (!predictions) {
+            return res.status(404).send({ mensaje: 'No existen predicciones' });
+        }
+        res.status(200).send({ prediction: predictions });
+    } catch (err) {
+        res.status(500).send({ mensaje: `Error al obtener las predicciones: ${err.message}`});
+    }
+}
+
+async function eliminarPrediccion(req, res) {
+    let prediccionId = req.params.id
+    try {
+        const predictionDeleted = await predictService.eliminarPrediccion(prediccionId);
+        if (!predictionDeleted) {
+            return res.status(404).send({ mensaje: 'La predicción no existe' });
+        }
+        res.status(200).send({ prediction: predictionDeleted });
+    } catch (err) {
+        res.status(500).send({ mensaje: `Error al eliminar la predicción: ${err.message}`})
+    }
+}
+
+
 module.exports = {
   health,
   ready,
-  doPredict
+  doPredict,
+  obtenerPrediccionPorId,
+  obtenerTodasPredicciones,
+  eliminarPrediccion
 };
