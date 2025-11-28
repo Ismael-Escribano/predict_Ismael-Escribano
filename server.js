@@ -1,6 +1,7 @@
 // server.js
 // Entry point del servicio PREDICT
 
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const predictRoutes = require("./routes/predictRoutes");
@@ -8,8 +9,9 @@ const { initModel } = require("./services/tfModelService");
 const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3002;
+const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect('mongodb://localhost:27017/predict')
+mongoose.connect(MONGO_URI)
     .then(() => {
         console.log('[DB] Conexión a la base de datos establecida');
     }).catch(err => {

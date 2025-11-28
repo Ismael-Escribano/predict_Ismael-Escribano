@@ -1,10 +1,11 @@
 // services/tfModelService.js
+require('dotenv').config();
 const path = require("path");
 const { pathToFileURL } = require("url");
 const tf = require("@tensorflow/tfjs");
 const wasmBackend = require("@tensorflow/tfjs-backend-wasm");
 
-const MODEL_VERSION = "v1.0";
+const MODEL_VERSION = process.env.MODEL_VERSION;
 
 let model = null;
 let ready = false;

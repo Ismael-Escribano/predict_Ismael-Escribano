@@ -68,6 +68,8 @@ async function doPredict(req, res) {
     const datosEntrada = {
       prediction: prediction,
       features: features,
+      featureCount: featureCount,
+      // Añadir source
       timestamp: timestamp,
       latencyMs: latencyMs
     }
