@@ -15,7 +15,7 @@ function ready(req, res) {
   if (!info.ready) {
     return res.status(503).json({
       ready: false,
-      modelVersion: info.modelVersion,
+      modelVersion: info.MODEL_VERSION,
       message: "Model is still loading"
     });
   }
@@ -77,9 +77,9 @@ async function doPredict(req, res) {
     
     res.status(201).json({
       predictionId: predictionStored.id,
-      prediction,
-      timestamp,
-      latencyMs
+      prediction: prediction,
+      timestamp: timestamp,
+      latencyMs: latencyMs
     });
   } catch (err) {
     console.error("Error en /predict:", err);
