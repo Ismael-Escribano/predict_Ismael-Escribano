@@ -22,7 +22,7 @@ function ready(req, res) {
 
   res.json({
     ready: true,
-    modelVersion: info.modelVersion
+    modelVersion: info.MODEL_VERSION
   });
 }
 
@@ -69,7 +69,7 @@ async function doPredict(req, res) {
       prediction: prediction,
       features: features,
       featureCount: featureCount,
-      // Añadir source
+      source: req.source,
       timestamp: timestamp,
       latencyMs: latencyMs
     }
